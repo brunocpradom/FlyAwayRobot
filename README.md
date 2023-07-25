@@ -1,6 +1,6 @@
 # FlyAwayRobot
 
-This is a scrapper that search for flight info in Gol[https://www.voegol.com.br/] and save the results in json files.
+This is a scrapper that search for flight info on Gol[https://www.voegol.com.br/] and save the results in json files.
 
 ## Setting up the environment:
 
