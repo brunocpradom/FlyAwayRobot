@@ -19,12 +19,12 @@ def VoeGol():
     JsonParser().save_file(flights)
 
 
-def start_scrapper(period:int):
+def start_scrapper():
     logger.info(f"Now: {datetime.now()}")
     config = get_environment_variables()
     flights = VoeGolScrapper(config).release_the_spider()
     JsonParser().save_file(flights)
-    logger.info(f"Next run : {datetime.now() + timedelta(hours=period)}")
+    logger.info(f"Next run : {datetime.now() + timedelta(hours=int(os.getenv('PERIOD', 2)))}")
 
 
 if __name__ == "__main__":
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     logger.info("FlyAway Scrapper")
     logger.info(f"It will run every {PERIOD} hours")
 
-    schedule.every(int(PERIOD)).hours.do(start_scrapper(int(PERIOD)))
+    schedule.every(int(PERIOD)).hours.do(start_scrapper)
     while True:
         schedule.run_pending()
         time.sleep(1)
