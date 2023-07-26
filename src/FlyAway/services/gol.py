@@ -11,27 +11,29 @@ from RPA.Browser.Selenium import Selenium
 from src.FlyAway.config import Config
 from src.FlyAway.dto.flight import FlightInfo
 from src.FlyAway.dto.result import Result
-from src.FlyAway.services import ACCEPT_COOKIES_BUTTON
-from src.FlyAway.services import ADD_NUMBER_OF_ADULTS_BUTTON
-from src.FlyAway.services import DEPARTURE_CITY_INPUT
-from src.FlyAway.services import DEPARTURE_CITY_SELECT
-from src.FlyAway.services import DEPARTURE_DATE_INPUT
-from src.FlyAway.services import DESTINATION_CITY_INPUT
-from src.FlyAway.services import DESTINATION_CITY_SELECT
-from src.FlyAway.services import DESTINATION_XPATH
-from src.FlyAway.services import DURATION_XPATH
-from src.FlyAway.services import FLIGHT_SUBMIT_BUTTON
-from src.FlyAway.services import FLIGHT_XPATH
-from src.FlyAway.services import FLIGHTS_RESULTS
-from src.FlyAway.services import NUMBER_OF_ADULTS_ELEMENT
-from src.FlyAway.services import NUMBER_OF_CHILDREN_BUTTON
-from src.FlyAway.services import ORIGINATION_XPATH
-from src.FlyAway.services import PRICE_XPATH
-from src.FlyAway.services import RETURN_DATE_INPUT
-from src.FlyAway.services import ROUND_TRIP_OPTION
-from src.FlyAway.services import ROUTE_TYPE
-from src.FlyAway.services import ROUTE_XPATH
-from src.FlyAway.services import SUBMIT_BUTTON
+from src.FlyAway.services import (
+    ACCEPT_COOKIES_BUTTON,
+    ADD_NUMBER_OF_ADULTS_BUTTON,
+    DEPARTURE_CITY_INPUT,
+    DEPARTURE_CITY_SELECT,
+    DEPARTURE_DATE_INPUT,
+    DESTINATION_CITY_INPUT,
+    DESTINATION_CITY_SELECT,
+    DESTINATION_XPATH,
+    DURATION_XPATH,
+    FLIGHT_SUBMIT_BUTTON,
+    FLIGHT_XPATH,
+    FLIGHTS_RESULTS,
+    NUMBER_OF_ADULTS_ELEMENT,
+    NUMBER_OF_CHILDREN_BUTTON,
+    ORIGINATION_XPATH,
+    PRICE_XPATH,
+    RETURN_DATE_INPUT,
+    ROUND_TRIP_OPTION,
+    ROUTE_TYPE,
+    ROUTE_XPATH,
+    SUBMIT_BUTTON,
+)
 
 class VoeGolScrapper():
     url = "https://www.voegol.com.br/"
@@ -137,7 +139,7 @@ class VoeGolScrapper():
         try:
             self.logger.info("Start VoeGol scrapper")
 
-            self.robot.open_available_browser(self.url) #, headless=True)
+            self.robot.open_available_browser(self.url, headless=True)
             self.make_search()
             self.select_outbound_flight()
             self.select_return_flight()
