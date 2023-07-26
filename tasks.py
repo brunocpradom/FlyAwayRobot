@@ -36,7 +36,7 @@ if __name__ == "__main__":
     logger.info("FlyAway Scrapper")
     logger.info(f"It will run every {PERIOD} hours")
 
-    schedule.every(int(PERIOD)).hours.do(start_scrapper(PERIOD))
+    schedule.every(int(PERIOD)).hours.do(start_scrapper(int(PERIOD)))
     while True:
         schedule.run_pending()
         time.sleep(1)
