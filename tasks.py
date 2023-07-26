@@ -1,5 +1,6 @@
 from __future__ import annotations
 import time
+from datetime import datetime
 import os
 
 from robocorp.tasks import task
@@ -15,6 +16,7 @@ def start_scrapper():
     config = get_environment_variables()
     flights = VoeGolScrapper(config).release_the_spider()
     JsonParser().save_file(flights)
+    logger.info(f"Last run : {datetime.now()}")
 
 
 @task
@@ -28,7 +30,8 @@ if __name__ == "__main__":
     
     load_dotenv()
     PERIOD  = os.getenv("PERIOD", 2)
-    logger.info("Start FlyAway Scrapper")
+    logger.info("FlyAway Scrapper")
+    logger.info(f"It will run every {PERIOD} hours")
 
     schedule.every(int(PERIOD)).hours.do(start_scrapper)
     while True:
