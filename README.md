@@ -29,6 +29,10 @@ Create a .env file based on env.example, and set the search variables :
     - RETURN_DATE         (Ex : "09/01/2024")
     - NUMBER_OF_ADULTS    (Ex: 3)
     - NUMBER_OF_CHILDREN  (Ex: 1)
+    - PERIOD              (In hours. Is used to configure the periodicity that the scrapper will run. Default : 2. If your are deploying in rocoborp cloud you don't need to set this variable)
 
 ## Start the scrapper
 Run tasks.py
+
+#### Obs:
+This project is ready to deploy in Robocorp Cloud [https://cloud.robocorp.com/]
