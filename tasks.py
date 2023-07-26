@@ -1,6 +1,6 @@
 from __future__ import annotations
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 
 from robocorp.tasks import task
@@ -12,16 +12,19 @@ from src.FlyAway.services.gol import VoeGolScrapper
 from src.FlyAway.services.json_parser import JsonParser
 
 
-def start_scrapper():
+@task
+def VoeGol():
     config = get_environment_variables()
     flights = VoeGolScrapper(config).release_the_spider()
     JsonParser().save_file(flights)
-    logger.info(f"Last run : {datetime.now()}")
 
 
-@task
-def VoeGol():
-    start_scrapper()
+def start_scrapper(period:int):
+    logger.info(f"Now: {datetime.now()}")
+    config = get_environment_variables()
+    flights = VoeGolScrapper(config).release_the_spider()
+    JsonParser().save_file(flights)
+    logger.info(f"Next run : {datetime.now() + timedelta(hours=period)}")
 
 
 if __name__ == "__main__":
@@ -33,7 +36,7 @@ if __name__ == "__main__":
     logger.info("FlyAway Scrapper")
     logger.info(f"It will run every {PERIOD} hours")
 
-    schedule.every(int(PERIOD)).hours.do(start_scrapper)
+    schedule.every(int(PERIOD)).hours.do(start_scrapper(PERIOD))
     while True:
         schedule.run_pending()
         time.sleep(1)
